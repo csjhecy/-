@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph_love_tv">
+            android:id="@+id/nav_graph_love_tv" app:startDestination="@id/splashFragment" android:label="启动页">
 
+    <fragment android:id="@+id/splashFragment" android:name="com.csj.lovevideo.ui.spalsh.SplashFragment"
+              android:label="SplashFragment"/>
 </navigation>

@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph_love_tv" app:startDestination="@id/splashFragment" android:label="启动页">
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph_love_tv" app:startDestination="@id/splashFragment" android:label="启动页">
 
     <fragment android:id="@+id/splashFragment" android:name="com.csj.lovevideo.ui.spalsh.SplashFragment"
-              android:label="SplashFragment"/>
+              android:label="SplashFragment">
+        <action android:id="@+id/action_splashFragment_to_guideFragment" app:destination="@id/guideFragment"
+                app:popUpTo="@+id/splashFragment" app:popUpToInclusive="true"/>
+        <action android:id="@+id/action_splashFragment_to_homeFragment" app:destination="@id/homeFragment"
+                app:popUpTo="@+id/splashFragment" app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment android:id="@+id/guideFragment" android:name="com.csj.lovevideo.ui.spalsh.GuideFragment"
+              android:label="GuideFragment"/>
+    <fragment android:id="@+id/homeFragment" android:name="com.csj.lovevideo.ui.home.HomeFragment"
+              android:label="HomeFragment"/>
 </navigation>

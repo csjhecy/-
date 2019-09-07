@@ -3,21 +3,24 @@ package com.csj.lovevideo.di
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.csj.lovevideo.LoveTvApp
 import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
 object AppInjector {
 
-    fun init(loveTvApp: LoveTvApp){
+    fun init(loveTvApp: LoveTvApp) {
         DaggerAppComponent
             .builder()
             .application(loveTvApp)
             .build()
             .inject(loveTvApp)
 
-        loveTvApp.registerActivityLifecycleCallbacks(object :Application.ActivityLifecycleCallbacks{
+        loveTvApp.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityPaused(activity: Activity?) {}
 
             override fun onActivityResumed(activity: Activity?) {}
@@ -42,10 +45,21 @@ object AppInjector {
      */
     private fun handleAcitivty(activity: Activity?) {
 
-        if (activity is HasSupportFragmentInjector){
+        if (activity is HasSupportFragmentInjector) {
             AndroidInjection.inject(activity)
-            Log.e("=====>","handleAcitivty")
+        }
 
+        if (activity is FragmentActivity) {
+            val supportFragmentManager = activity.supportFragmentManager
+            supportFragmentManager.registerFragmentLifecycleCallbacks(object :
+                FragmentManager.FragmentLifecycleCallbacks() {
+                override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
+                    super.onFragmentCreated(fm, f, savedInstanceState)
+                    if (f is Injectable) {
+                        AndroidSupportInjection.inject(f)
+                    }
+                }
+            }, true)
         }
     }
 }

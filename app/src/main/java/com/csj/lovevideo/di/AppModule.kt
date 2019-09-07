@@ -16,5 +16,5 @@ class AppModule {
     @Singleton
     @Provides
     fun providerSp(application: Application): SharedPreferences = application
-        .getSharedPreferences(Config.SP.SP_NAME, Application.MODE_PRIVATE)
+        .getSharedPreferences(Config.SP.NAME, Application.MODE_PRIVATE)
 }

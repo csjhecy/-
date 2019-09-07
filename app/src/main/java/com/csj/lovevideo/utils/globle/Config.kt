@@ -10,6 +10,14 @@ object Config {
      */
     object SP {
 
-        const val SP_NAME = "love_tv"
+        /**
+         * sp 文件名
+         */
+        const val NAME = "love_tv"
+
+        /**
+         * 是否第一次进入
+         */
+        const val KEY_IS_FIRST = "com.csj.love.tv.sp.key_is_first"
     }
 }

@@ -1,12 +1,8 @@
 package com.csj.lovevideo.ui.main
 
-import android.app.Activity
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -27,7 +23,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
-    private var mActivityMainBinding: ActivityMainBinding by autoCleared()
+    private var mMainBinding: ActivityMainBinding by autoCleared()
 
     private val mNavController by lazy { findNavController(R.id.navHostFragment) }
 
@@ -49,8 +45,11 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     private fun initUi() {
         setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+            .apply {
+                lifecycleOwner = this@MainActivity
+            }
             .also {
-                mActivityMainBinding = it
+                mMainBinding = it
                 it.loveTvToolbar.apply {
                     setSupportActionBar(this)
                     setupWithNavController(mNavController)

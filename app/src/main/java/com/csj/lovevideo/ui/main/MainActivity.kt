@@ -1,23 +1,37 @@
 package com.csj.lovevideo.ui.main
 
+import android.app.Activity
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.ActivityMainBinding
 import com.csj.lovevideo.ui.spalsh.SplashViewModel
 import com.csj.lovevideo.utils.autoCleared
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
-    var mActivityMainBinding: ActivityMainBinding by autoCleared()
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-    val mNavController by lazy { findNavController(R.id.navHostFragment) }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
-    val mSplashViewModel by viewModels<SplashViewModel>()
+    private var mActivityMainBinding: ActivityMainBinding by autoCleared()
+
+    private val mNavController by lazy { findNavController(R.id.navHostFragment) }
+
+    private val mSplashViewModel by viewModels<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun initUi() {
         setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .also {
@@ -40,7 +56,5 @@ class MainActivity : AppCompatActivity() {
                     setupWithNavController(mNavController)
                 }
             }
-
-
     }
 }

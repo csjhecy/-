@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <import type="com.csj.lovevideo.ui.guide.GuidePageAdapter"/>
+        <variable name="mGuideAdapter" type="GuidePageAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-                android:text="我是引导页"
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/guideViewPager"
+                android:adapter="@{mGuideAdapter}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_dots"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="46dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <View
+                    android:id="@+id/dot1"
+                    android:layout_width="@dimen/dp_8"
+                    android:background="@drawable/app_dots_white_bg"
+                    android:layout_height="@dimen/dp_8"/>
+            <View
+                    android:id="@+id/dot2"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="@dimen/dp_8"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/app_dots_white_bg"
+                    android:layout_height="@dimen/dp_8"/>
+            <View
+                    android:id="@+id/dot3"
+                    android:layout_width="@dimen/dp_8"
+                    android:background="@drawable/app_dots_white_bg"
+                    android:layout_height="@dimen/dp_8"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+                android:id="@+id/dot_red"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ll_dots"
+                app:layout_constraintBottom_toBottomOf="@id/ll_dots"
+                android:layout_width="@dimen/dp_8"
+                android:background="@drawable/app_dots_red_bg"
+                android:layout_height="@dimen/dp_8"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

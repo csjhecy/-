@@ -20,7 +20,7 @@ import javax.inject.Inject
 /**
  * 启动页
  */
-class SplashFragment : Fragment(),Injectable {
+class SplashFragment : Fragment(), Injectable {
 
     var mSplashBinding by autoCleared<FragmentSplashBinding>()
 
@@ -42,7 +42,7 @@ class SplashFragment : Fragment(),Injectable {
         mSplashBinding.splashBg.animate().alpha(1.0f).apply {
             duration = ANIMATE_DURATION
             interpolator = LinearInterpolator()
-        }.setListener(object :Animator.AnimatorListener{
+        }.setListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {}
 
             override fun onAnimationEnd(animation: Animator?) {
@@ -59,7 +59,7 @@ class SplashFragment : Fragment(),Injectable {
     /**
      * 跳页面
      */
-    fun goPage(){
+    fun goPage() {
         mSp.getBoolean(Config.SP.KEY_IS_FIRST, true).let {
             if (it) findNavController().navigate(R.id.action_splashFragment_to_guideFragment)
             else findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
@@ -67,7 +67,7 @@ class SplashFragment : Fragment(),Injectable {
         }
     }
 
-    companion object{
+    companion object {
 
         /**
          * 动画时长

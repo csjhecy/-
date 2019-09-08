@@ -3,6 +3,7 @@ package com.csj.lovevideo.ui.spalsh
 import android.animation.Animator
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,6 +62,7 @@ class SplashFragment : Fragment(), Injectable {
      */
     fun goPage() {
         mSp.getBoolean(Config.SP.KEY_IS_FIRST, true).let {
+            Log.e("====","开启了引导页 $it")
             if (it) findNavController().navigate(R.id.action_splashFragment_to_guideFragment)
             else findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
             mSplashBinding.splashBg.clearAnimation()

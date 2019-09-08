@@ -29,7 +29,12 @@ class GuidePageAdapter @Inject constructor() : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): View {
         val view = View.inflate(container.context, R.layout.viewpager_guide_item, null)
         view.findViewById<AppCompatImageView>(R.id.guide_bg).setImageResource(mDataImages[position])
-        view.findViewById<AppCompatImageView>(R.id.center_start).setVisible(position == mDataImages.size - 1)
+        view.findViewById<AppCompatImageView>(R.id.center_start).apply {
+            setVisible(position == mDataImages.size - 1)
+            setOnClickListener {
+                setOnImmediatelyExperienceClickListener?.invoke(it)
+            }
+        }
         container.addView(view)
         return view
     }
@@ -41,5 +46,11 @@ class GuidePageAdapter @Inject constructor() : PagerAdapter() {
     override fun isViewFromObject(view: View, viewObject: Any) = view == viewObject
 
     override fun getCount(): Int = mDataImages.size
+
+
+    /**
+     * 立即体验
+     */
+    var setOnImmediatelyExperienceClickListener: ((view: View) -> Unit)? = null
 
 }

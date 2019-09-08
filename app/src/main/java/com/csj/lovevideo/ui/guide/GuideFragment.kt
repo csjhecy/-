@@ -1,26 +1,21 @@
 package com.csj.lovevideo.ui.guide
 
-import android.content.Context
-import android.graphics.Color
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginLeft
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.FragmentGuideBinding
 import com.csj.lovevideo.di.Injectable
 import com.csj.lovevideo.utils.autoCleared
-import com.csj.lovevideo.utils.ext.dpToPx
+import com.csj.lovevideo.utils.globle.Config
 import javax.inject.Inject
 
 class GuideFragment : Fragment(), Injectable {
@@ -33,6 +28,9 @@ class GuideFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var mGuidePageAdapter: GuidePageAdapter
+
+    @Inject
+    lateinit var mSp: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return DataBindingUtil.inflate<FragmentGuideBinding>(inflater, R.layout.fragment_guide, container, false)
@@ -81,6 +79,13 @@ class GuideFragment : Fragment(), Injectable {
             override fun onPageSelected(position: Int) {}
 
         })
+
+        mGuidePageAdapter.setOnImmediatelyExperienceClickListener = {
+            mSp.edit {
+                findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
+                putBoolean(Config.SP.KEY_IS_FIRST,false)
+            }
+        }
     }
 
 

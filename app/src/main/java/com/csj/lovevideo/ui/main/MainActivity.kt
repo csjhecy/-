@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.ActivityMainBinding
 import com.csj.lovevideo.ui.spalsh.SplashViewModel
 import com.csj.lovevideo.utils.autoCleared
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     private var mMainBinding: ActivityMainBinding by autoCleared()
 
-    private val mNavController by lazy { findNavController(com.csj.lovevideo.R.id.navHostFragment) }
+    private val mNavController by lazy { findNavController(R.id.navHostFragment) }
 
     private val mSplashViewModel by viewModels<SplashViewModel>()
 
@@ -44,11 +45,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     private fun initListener() {
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                com.csj.lovevideo.R.id.splashFragment,
-                com.csj.lovevideo.R.id.guideFragment -> {
+                R.id.splashFragment,
+                R.id.guideFragment -> {
                     mSplashViewModel.setVisibleToolbar(false)
                 }
                 else -> {
+                    initWindows()
                     mSplashViewModel.setVisibleToolbar(true)
                 }
             }
@@ -57,14 +59,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
 
     private fun initUi() {
-        setContentView<ActivityMainBinding>(this, com.csj.lovevideo.R.layout.activity_main).apply {
+        setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
             lifecycleOwner = this@MainActivity
             mSplashModel = mSplashViewModel
         }.also {
             mMainBinding = it
             setSupportActionBar(it.loveTvToolbar)
             it.loveTvToolbar.apply {
-                val appBarConfiguration = AppBarConfiguration(setOf(com.csj.lovevideo.R.id.splashFragment, com.csj.lovevideo.R.id.guideFragment))
+                val appBarConfiguration = AppBarConfiguration(setOf(R.id.splashFragment,
+                    R.id.guideFragment,R.id.homeFragment))
                 setupWithNavController(mNavController, appBarConfiguration)
             }
         }

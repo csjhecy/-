@@ -29,7 +29,6 @@ fun Activity.initWindows(statusColorResId: Int = com.csj.lovevideo.R.color.color
         childAt?.apply {
             fitsSystemWindows = true
         }
-        return
 
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
         //透明状态栏

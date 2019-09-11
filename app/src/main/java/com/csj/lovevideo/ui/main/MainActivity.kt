@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.splashFragment,
+                R.id.homeFragment,
                 R.id.guideFragment -> {
                     mSplashViewModel.setVisibleToolbar(false)
                 }
@@ -66,8 +67,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             mMainBinding = it
             setSupportActionBar(it.loveTvToolbar)
             it.loveTvToolbar.apply {
-                val appBarConfiguration = AppBarConfiguration(setOf(R.id.splashFragment,
-                    R.id.guideFragment,R.id.homeFragment))
+                val appBarConfiguration = AppBarConfiguration(
+                    setOf(
+                        R.id.splashFragment,
+                        R.id.guideFragment,
+                        R.id.homeFragment
+                    )
+                )
                 setupWithNavController(mNavController, appBarConfiguration)
             }
         }

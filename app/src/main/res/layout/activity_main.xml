@@ -17,7 +17,7 @@
                     android:id="@+id/loveTvToolbar"
                     android:minHeight="?attr/actionBarSize"
                     android:layout_width="match_parent"
-                    app:visible="@{mSplashModel.isVisible}"
+                    app:visible="@{safeUnbox(mSplashModel.isVisible())}"
                     android:background="@color/colorPrimary"
                     android:layout_height="?android:attr/actionBarSize"/>
 

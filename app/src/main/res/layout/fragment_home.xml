@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.drawerlayout.widget.DrawerLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-                android:text="我是首页"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+           <com.csj.lovevideo.ui.widget.LoveTvToolbar
+                   android:id="@+id/loveTvHome"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:layout_width="match_parent"
+                   android:background="@color/colorPrimary"
+                   android:layout_height="?attr/actionBarSize"/>
+
+            <TextView
+                    app:layout_constraintTop_toBottomOf="@id/loveTvHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="内容" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+                app:headerLayout="@layout/menu_header"
+                android:layout_gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

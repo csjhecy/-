@@ -59,6 +59,16 @@ fun Activity.getNavigationBarHeight(): Int {
     return getResources().getDimensionPixelSize(resourceId)
 }
 
+/**
+ * 获取状态栏高度
+ * @param context
+ * @return
+ */
+fun Activity.getStatusBarHeight(): Int {
+    val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+    return resources.getDimensionPixelSize(resourceId)
+}
+
 
 fun Context.dpToPx(dps: Int): Int {
     return Math.round(resources.displayMetrics.density * dps)

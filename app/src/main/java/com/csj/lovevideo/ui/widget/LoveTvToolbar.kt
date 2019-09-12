@@ -18,7 +18,7 @@ class LoveTvToolbar : Toolbar {
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr){
         val layoutInflater = LayoutInflater.from(context)
         DataBindingUtil.inflate<ToolbarLoveTvBinding>(
             layoutInflater, R.layout.toolbar_love_tv, this, true
@@ -26,7 +26,9 @@ class LoveTvToolbar : Toolbar {
     }
 
     override fun setTitle(title: CharSequence?) {
-        mToolbarLoveTvBinding.topTitle.text = title
+        post {
+            mToolbarLoveTvBinding.topTitle.text = title
+        }
     }
 
 

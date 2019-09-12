@@ -14,26 +14,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-           <com.csj.lovevideo.ui.widget.LoveTvToolbar
-                   android:id="@+id/loveTvHome"
-                   app:layout_constraintTop_toTopOf="parent"
-                   android:layout_width="match_parent"
-                   android:background="@color/colorPrimary"
-                   android:layout_height="?attr/actionBarSize"/>
+            <com.csj.lovevideo.ui.widget.LoveTvToolbar
+                    android:id="@+id/loveTvHome"
+                    android:fitsSystemWindows="true"
+                    app:title="你好"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    app:layout_constraintTop_toBottomOf="@id/loveTvHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="内容" />
+                    android:text="内容"
+                    app:layout_constraintTop_toBottomOf="@id/loveTvHome" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
-                app:headerLayout="@layout/menu_header"
-                android:layout_gravity="start"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:headerLayout="@layout/menu_header" />
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

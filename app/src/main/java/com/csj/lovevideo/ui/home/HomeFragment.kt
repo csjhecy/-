@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.FragmentHomeBinding
 import com.csj.lovevideo.utils.autoCleared
-import com.csj.lovevideo.utils.ext.getNavigationBarHeight
+import com.csj.lovevideo.utils.ext.getStatusBarHeight
 
 class HomeFragment:Fragment() {
 
@@ -24,14 +24,19 @@ class HomeFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mHomeBinding.loveTvHome.title = "首页"
+        //mHomeBinding.loveTvHome.title = "首页"
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val navigationBarHeight = requireActivity().getNavigationBarHeight()
-        val layoutParams = mHomeBinding.loveTvHome.layoutParams
-        layoutParams.height = mHomeBinding.loveTvHome.height+navigationBarHeight
-        mHomeBinding.loveTvHome.layoutParams = layoutParams
+        val navigationBarHeight = requireActivity().getStatusBarHeight()
+        mHomeBinding.loveTvHome.let {
+            it.post {
+                val layoutParams = it.layoutParams
+                layoutParams.height = it.height+navigationBarHeight
+                it.layoutParams = layoutParams
+            }
+        }
+
     }
 }

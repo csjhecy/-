@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LoveVideo</string>
+    <string name="app_menu_open">打开</string>
+    <string name="app_menu_close">关闭</string>
 </resources>

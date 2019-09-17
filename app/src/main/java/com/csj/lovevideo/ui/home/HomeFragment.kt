@@ -22,11 +22,6 @@ class HomeFragment:Fragment() {
         }.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //mHomeBinding.loveTvHome.title = "首页"
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val navigationBarHeight = requireActivity().getStatusBarHeight()
@@ -38,5 +33,31 @@ class HomeFragment:Fragment() {
             }
         }
 
+        initUI()
+        initListener()
+    }
+
+    private fun initListener() {
+
+    }
+
+    private fun initUI(){
+
+        mHomeBinding.loveTvHome.apply {
+            title = "首页"
+        }
+       /* val actionBarDrawerToggle = ActionBarDrawerToggle(
+            requireActivity(),
+            mHomeBinding.drawerLayoutMenu,
+            mHomeBinding.loveTvHome,
+            R.string.app_menu_open,
+            R.string.app_menu_close
+        )
+        actionBarDrawerToggle.syncState()
+        mHomeBinding.drawerLayoutMenu.addDrawerListener(actionBarDrawerToggle)
+        mHomeBinding.loveTvHome.setNavigationIcon(R.drawable.ic_drawer_home)*/
+
+
+         // AppBarConfiguration()
     }
 }

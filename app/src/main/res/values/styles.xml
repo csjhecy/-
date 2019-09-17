@@ -10,4 +10,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+    </style>
+
 </resources>

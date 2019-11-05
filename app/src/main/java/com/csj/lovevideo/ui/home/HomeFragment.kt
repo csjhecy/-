@@ -4,12 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.FragmentHomeBinding
 import com.csj.lovevideo.utils.autoCleared
 import com.csj.lovevideo.utils.ext.getStatusBarHeight
+import com.csj.lovevideo.utils.ext.showToast
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment:Fragment() {
 
@@ -24,21 +31,12 @@ class HomeFragment:Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val navigationBarHeight = requireActivity().getStatusBarHeight()
-        mHomeBinding.loveTvHome.let {
-            it.post {
-                val layoutParams = it.layoutParams
-                layoutParams.height = it.height+navigationBarHeight
-                it.layoutParams = layoutParams
-            }
-        }
-
         initUI()
         initListener()
     }
 
-    private fun initListener() {
-
+    private fun initListener(){
+        mHomeBinding.navigationView.setupWithNavController(findNavController())
     }
 
     private fun initUI(){
@@ -46,7 +44,7 @@ class HomeFragment:Fragment() {
         mHomeBinding.loveTvHome.apply {
             title = "首页"
         }
-       /* val actionBarDrawerToggle = ActionBarDrawerToggle(
+        val actionBarDrawerToggle = ActionBarDrawerToggle(
             requireActivity(),
             mHomeBinding.drawerLayoutMenu,
             mHomeBinding.loveTvHome,
@@ -55,7 +53,7 @@ class HomeFragment:Fragment() {
         )
         actionBarDrawerToggle.syncState()
         mHomeBinding.drawerLayoutMenu.addDrawerListener(actionBarDrawerToggle)
-        mHomeBinding.loveTvHome.setNavigationIcon(R.drawable.ic_drawer_home)*/
+        mHomeBinding.loveTvHome.setNavigationIcon(R.drawable.ic_drawer_home)
 
 
          // AppBarConfiguration()

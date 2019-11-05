@@ -6,6 +6,7 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 
 
 /**
@@ -54,9 +55,9 @@ fun Activity.initWindows(statusColorResId: Int = com.csj.lovevideo.R.color.color
  * 获取导航栏高度
  * @return 导航栏高度
  */
-fun Activity.getNavigationBarHeight(): Int {
-    val resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android")
-    return getResources().getDimensionPixelSize(resourceId)
+fun Context.getNavigationBarHeight(): Int {
+    val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+    return resources.getDimensionPixelSize(resourceId)
 }
 
 /**
@@ -64,15 +65,32 @@ fun Activity.getNavigationBarHeight(): Int {
  * @param context
  * @return
  */
-fun Activity.getStatusBarHeight(): Int {
+fun Context.getStatusBarHeight(): Int {
     val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
     return resources.getDimensionPixelSize(resourceId)
 }
 
 
+
+
+
 fun Context.dpToPx(dps: Int): Int {
     return Math.round(resources.displayMetrics.density * dps)
 }
+
+/**
+ * 弹出短提示
+ */
+fun Context.showToast(text:String){
+    Toast.makeText(this,text,Toast.LENGTH_SHORT).show()
+}
+
+
+fun Context.showLongToast(text:String){
+    Toast.makeText(this,text,Toast.LENGTH_LONG).show()
+}
+
+
 
 
 

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.csj.lovevideo.R
 import com.csj.lovevideo.databinding.ToolbarLoveTvBinding
 import com.csj.lovevideo.utils.autoCleared
+import com.csj.lovevideo.utils.ext.getStatusBarHeight
 
 /**
  * 添加自定义Toolbar
@@ -29,6 +30,14 @@ class LoveTvToolbar : Toolbar {
         post {
             mToolbarLoveTvBinding.topTitle.text = title
         }
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        val navigationBarHeight = context.getStatusBarHeight()
+        val layoutParams = layoutParams
+        layoutParams.height = navigationBarHeight+height
+        this.layoutParams = layoutParams
     }
 
 

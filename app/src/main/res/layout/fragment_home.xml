@@ -11,7 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -20,24 +21,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary"
+                    app:contentInsetStartWithNavigation="@dimen/dp_0"
                     android:fitsSystemWindows="true"
                     android:minHeight="?attr/actionBarSize"
                     app:layout_constraintTop_toTopOf="parent"
                     app:title=""/>
 
-            <fragment
-                    android:name="androidx.navigation.fragment.NavHostFragment"
-                    android:id="@+id/nav_host_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toBottomOf="@id/loveTvHome"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/nav_graph_home" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigation_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
